@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:show_flutter/constants/gaps.dart';
 import 'package:show_flutter/constants/sizes.dart';
 import 'package:show_flutter/features/authentication/view_models/signup_view_model.dart';
 import 'package:show_flutter/features/authentication/views/login_screen.dart';
 import 'package:show_flutter/features/authentication/views/widgets/form_button.dart';
-import 'package:show_flutter/utils.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
   static const routeName = "signUp";
@@ -87,9 +85,11 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Gaps.v80,
-                  const FaIcon(
-                    FontAwesomeIcons.at,
-                    size: Sizes.size48,
+                  const Text(
+                    "Join!",
+                    style: TextStyle(
+                      fontSize: Sizes.size36,
+                    ),
                   ),
                   Gaps.v40,
                   TextFormField(
@@ -164,37 +164,18 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
               ),
             ),
           ),
-          bottomNavigationBar: Container(
-            color: isDarkMode(context)
-                ? Theme.of(context).appBarTheme.backgroundColor
-                : Colors.grey.shade50,
-            child: Padding(
-              padding: const EdgeInsets.only(
-                top: Sizes.size32,
-                bottom: Sizes.size64,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "alreadyHaveAnAccount",
-                    style: TextStyle(
-                      fontSize: Sizes.size16,
-                    ),
-                  ),
-                  Gaps.h5,
-                  GestureDetector(
-                    onTap: () => _onLoginTap(context),
-                    child: Text(
-                      "logIn",
-                      style: TextStyle(
-                        fontSize: Sizes.size16,
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).primaryColor,
-                      ),
-                    ),
-                  ),
-                ],
+          bottomNavigationBar: Padding(
+            padding: const EdgeInsets.only(
+              top: Sizes.size32,
+              bottom: Sizes.size64,
+              left: Sizes.size40,
+              right: Sizes.size40,
+            ),
+            child: GestureDetector(
+              onTap: () => _onLoginTap(context),
+              child: const FormButton(
+                disabled: false,
+                text: "Log In",
               ),
             ),
           ),

@@ -42,7 +42,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Log in'),
+        title: const Text('MOOD'),
         leading: const Text(""),
       ),
       body: Padding(
@@ -53,6 +53,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
           key: _formKey,
           child: Column(
             children: [
+              Gaps.v80,
+              const Text(
+                "Welcome!",
+                style: TextStyle(
+                  fontSize: Sizes.size24,
+                ),
+              ),
               Gaps.v28,
               TextFormField(
                 autocorrect: false,
@@ -115,7 +122,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 onTap: _onSubmitTap,
                 child: const FormButton(
                     disabled: false, //ref.watch(loginProvider).isLoading,
-                    text: "Log in"),
+                    text: "Enter"),
               )
             ],
           ),
@@ -125,29 +132,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         padding: const EdgeInsets.only(
           top: Sizes.size32,
           bottom: Sizes.size64,
+          left: Sizes.size40,
+          right: Sizes.size40,
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              "Don't have an account?",
-              style: TextStyle(
-                fontSize: Sizes.size16,
-              ),
-            ),
-            Gaps.h5,
-            GestureDetector(
-              onTap: () => onSignUpTap(context),
-              child: Text(
-                "Sign up",
-                style: TextStyle(
-                  fontSize: Sizes.size16,
-                  fontWeight: FontWeight.w600,
-                  color: Theme.of(context).primaryColor,
-                ),
-              ),
-            ),
-          ],
+        child: GestureDetector(
+          onTap: () => onSignUpTap(context),
+          child: const FormButton(
+            disabled: false,
+            text: "Create an account",
+          ),
         ),
       ),
     );

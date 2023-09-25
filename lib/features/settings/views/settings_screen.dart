@@ -29,36 +29,30 @@ class SettingsScreen extends ConsumerWidget {
               title: const Text("Dark mode"),
             ),
             ListTile(
-              title: const Text("Log out (iOS / Bottom)"),
+              title: const Text("Log out (iOS)"),
               textColor: Colors.red,
               onTap: () {
-                showCupertinoModalPopup(
+                showCupertinoDialog(
                   context: context,
-                  builder: (context) => CupertinoActionSheet(
+                  builder: (context) => CupertinoAlertDialog(
                     title: const Text("Are you sure?"),
-                    message: const Text("Please dooooont gooooo"),
                     actions: [
-                      CupertinoActionSheetAction(
-                        isDefaultAction: true,
+                      CupertinoDialogAction(
                         onPressed: () => Navigator.of(context).pop(),
-                        child: const Text("Not log out"),
+                        child: const Text("Cancel"),
                       ),
-                      CupertinoActionSheetAction(
-                        isDestructiveAction: true,
+                      CupertinoDialogAction(
                         onPressed: () {
                           ref.read(authRepository).signOut();
                           context.go("/login");
                         },
-                        child: const Text("Yes plz."),
-                      )
+                        isDestructiveAction: true,
+                        child: const Text("Sign Out"),
+                      ),
                     ],
                   ),
                 );
               },
-            ),
-            const AboutListTile(
-              applicationVersion: "1.0",
-              applicationLegalese: "Don't copy me.",
             ),
           ],
         ),

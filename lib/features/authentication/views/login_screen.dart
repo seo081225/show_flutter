@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:show_flutter/constants/gaps.dart';
 import 'package:show_flutter/constants/sizes.dart';
+import 'package:show_flutter/features/authentication/view_models/login_view_model.dart';
 import 'package:show_flutter/features/authentication/views/widgets/form_button.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -28,12 +29,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     if (_formKey.currentState != null) {
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
-        // ref.read(loginProvider.notifier).login(
-        //       formData["email"]!,
-        //       formData["password"]!,
-        //       context,
-        //     );
-        // context.goNamed(InterestsScreen.routeName);
+        ref.read(loginProvider.notifier).login(
+              formData["email"]!,
+              formData["password"]!,
+              context,
+            );
       }
     }
   }

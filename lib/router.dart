@@ -4,6 +4,7 @@ import 'package:show_flutter/features/authentication/repository/authentication_r
 import 'package:show_flutter/features/authentication/views/home_screen.dart';
 import 'package:show_flutter/features/authentication/views/login_screen.dart';
 import 'package:show_flutter/features/authentication/views/sign_up_screen.dart';
+import 'package:show_flutter/features/settings/views/settings_screen.dart';
 
 final routerProvider = Provider((ref) {
   return GoRouter(
@@ -33,6 +34,11 @@ final routerProvider = Provider((ref) {
         name: LoginScreen.routeName,
         path: LoginScreen.routeURL,
         builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        name: SettingsScreen.routeName,
+        path: SettingsScreen.routeURL,
+        builder: (context, state) => const SettingsScreen(),
       )
     ],
   );

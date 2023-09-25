@@ -5,9 +5,6 @@ import 'package:show_flutter/constants/sizes.dart';
 import 'package:show_flutter/features/settings/views/settings_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
-  static const routeName = "home";
-  static const routeURL = "/";
-
   const HomeScreen({super.key});
 
   @override
@@ -17,7 +14,7 @@ class HomeScreen extends ConsumerWidget {
         actions: [
           IconButton(
             onPressed: () => context.pushNamed(SettingsScreen.routeName),
-            icon: const Icon(Icons.exit_to_app_rounded),
+            icon: const Icon(Icons.settings_sharp),
           )
         ],
       ),

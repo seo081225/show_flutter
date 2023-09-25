@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:show_flutter/features/authentication/repository/authentication_repository.dart';
-import 'package:show_flutter/features/authentication/views/home_screen.dart';
 import 'package:show_flutter/features/users/view_models/users_view_model.dart';
 import 'package:show_flutter/utils.dart';
 
@@ -30,7 +29,7 @@ class SignUpViewModel extends AsyncNotifier<void> {
     if (state.hasError) {
       showFirebaseErrorSnack(context, state.error);
     } else {
-      context.goNamed(HomeScreen.routeName);
+      context.go("/home");
     }
   }
 }

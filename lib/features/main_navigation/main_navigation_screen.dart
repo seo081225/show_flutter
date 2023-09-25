@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:show_flutter/constants/sizes.dart';
-import 'package:show_flutter/features/authentication/views/home_screen.dart';
+import 'package:show_flutter/features/home/views/home_screen.dart';
 import 'package:show_flutter/features/main_navigation/widgets/nav_tab.dart';
 import 'package:show_flutter/features/posts/views/post_screen.dart';
 

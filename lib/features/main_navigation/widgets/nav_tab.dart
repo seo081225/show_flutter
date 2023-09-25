@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:show_flutter/constants/sizes.dart';
 
 class NavTab extends StatelessWidget {
@@ -31,9 +30,10 @@ class NavTab extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              FaIcon(
+              Icon(
                 isSelected ? selectedIcon : icon,
-                size: Sizes.size24,
+                color: Theme.of(context).primaryColor,
+                size: Sizes.size36,
               ),
             ],
           ),

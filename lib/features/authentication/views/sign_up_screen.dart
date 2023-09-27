@@ -2,15 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:show_flutter/constants/gaps.dart';
+import 'package:show_flutter/constants/rotes.dart';
 import 'package:show_flutter/constants/sizes.dart';
 import 'package:show_flutter/features/authentication/view_models/signup_view_model.dart';
-import 'package:show_flutter/features/authentication/views/login_screen.dart';
 import 'package:show_flutter/features/authentication/views/widgets/form_button.dart';
 
 class SignUpScreen extends ConsumerStatefulWidget {
-  static const routeName = "signUp";
-  static const routeURL = "/signUp";
-
   const SignUpScreen({super.key});
 
   @override
@@ -25,7 +22,7 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
   String _password = "";
 
   void _onLoginTap(BuildContext context) async {
-    context.pushNamed(LoginScreen.routeName);
+    context.pushNamed(Routes.LOGIN_NAME);
   }
 
   void _onSubmitTap() {

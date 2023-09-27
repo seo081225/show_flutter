@@ -6,9 +6,6 @@ import 'package:show_flutter/features/authentication/repository/authentication_r
 import 'package:show_flutter/features/settings/view_models/setting_view_model.dart';
 
 class SettingsScreen extends ConsumerWidget {
-  static const routeURL = "/setting";
-  static const routeName = "setting";
-
   const SettingsScreen({super.key});
 
   @override

@@ -7,9 +7,6 @@ import 'package:show_flutter/features/authentication/view_models/login_view_mode
 import 'package:show_flutter/features/authentication/views/widgets/form_button.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
-  static String routeName = "login";
-  static String routeURL = "/login";
-
   const LoginScreen({super.key});
 
   @override

@@ -6,8 +6,6 @@ import 'package:show_flutter/features/main_navigation/widgets/nav_tab.dart';
 import 'package:show_flutter/features/posts/views/post_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
-  static const String routeName = "mainNavigation";
-
   final String tab;
 
   const MainNavigationScreen({

@@ -29,8 +29,7 @@ class SettingsScreen extends ConsumerWidget {
               title: const Text("Dark mode"),
             ),
             ListTile(
-              title: const Text("Log out (iOS)"),
-              textColor: Colors.red,
+              title: const Text("Log out"),
               onTap: () {
                 showCupertinoDialog(
                   context: context,

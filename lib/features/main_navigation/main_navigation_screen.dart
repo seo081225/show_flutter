@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:show_flutter/constants/sizes.dart';
 import 'package:show_flutter/features/home/views/home_screen.dart';
-import 'package:show_flutter/features/main_navigation/widgets/nav_tab.dart';
+import 'package:show_flutter/features/main_navigation/widgets/navigation_tab.dart';
 import 'package:show_flutter/features/posts/views/post_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
@@ -51,12 +51,15 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       bottomNavigationBar: Container(
         padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).padding.bottom + Sizes.size10),
+        decoration: BoxDecoration(
+            border:
+                Border.all(width: 2, color: Theme.of(context).primaryColor)),
         child: Padding(
           padding: const EdgeInsets.all(Sizes.size10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              NavTab(
+              NavigationTab(
                 text: "Home",
                 isSelected: _selectedIndex == 0,
                 icon: Icons.home_outlined,
@@ -64,7 +67,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 onTap: () => _onTap(0),
                 selectedIndex: _selectedIndex,
               ),
-              NavTab(
+              NavigationTab(
                 text: "Post",
                 isSelected: _selectedIndex == 1,
                 icon: Icons.create_outlined,

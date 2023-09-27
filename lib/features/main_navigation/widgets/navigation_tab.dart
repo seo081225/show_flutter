@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:show_flutter/constants/sizes.dart';
 
-class NavTab extends StatelessWidget {
-  const NavTab({
+class NavigationTab extends StatelessWidget {
+  const NavigationTab({
     super.key,
     required this.text,
     required this.isSelected,

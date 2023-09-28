@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:show_flutter/constants/gaps.dart';
+import 'package:show_flutter/constants/icons.dart';
 import 'package:show_flutter/constants/sizes.dart';
+import 'package:show_flutter/features/authentication/views/widgets/form_button.dart';
+import 'package:show_flutter/features/posts/view_models/post_view_model.dart';
 
-class PostScreen extends StatefulWidget {
+class PostScreen extends ConsumerStatefulWidget {
   const PostScreen({super.key});
 
   @override
-  State<PostScreen> createState() => _PostScreenState();
+  ConsumerState<PostScreen> createState() => _PostScreenState();
 }
 
-class _PostScreenState extends State<PostScreen> {
+class _PostScreenState extends ConsumerState<PostScreen> {
   late ScrollController scrollcontroller;
-  late TextEditingController _textEditingController;
+  late final TextEditingController _textEditingController =
+      TextEditingController();
   late List<bool> isSelected = <bool>[
     false,
     false,
@@ -23,6 +28,9 @@ class _PostScreenState extends State<PostScreen> {
     false
   ];
 
+  String _context = "";
+  int _mood = 0;
+
   @override
   void dispose() {
     scrollcontroller.dispose();
@@ -33,7 +41,9 @@ class _PostScreenState extends State<PostScreen> {
   @override
   void initState() {
     scrollcontroller = ScrollController();
-    _textEditingController = TextEditingController();
+    _textEditingController.addListener(() {
+      _context = _textEditingController.text;
+    });
     super.initState();
   }
 
@@ -41,11 +51,41 @@ class _PostScreenState extends State<PostScreen> {
     for (int i = 0; i < isSelected.length; i++) {
       if (i == index) {
         isSelected[i] = true;
+        _mood = icons[i].codePoint;
       } else {
         isSelected[i] = false;
       }
     }
     setState(() {});
+  }
+
+  void _uploadPost() {
+    if (_mood < 0) return;
+    ref.read(postForm.notifier).state = {
+      "content": _context,
+      "mood": _mood,
+    };
+
+    print(ref.read(postForm));
+    ref.read(postProvider.notifier).uploadPost(context);
+
+    if (context.mounted) {
+      setState(() {
+        _textEditingController.text = "";
+        _context = "";
+        _mood = 0;
+        isSelected = <bool>[
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ];
+      });
+    }
   }
 
   @override
@@ -76,9 +116,6 @@ class _PostScreenState extends State<PostScreen> {
                           maxLength: 300,
                           style: const TextStyle(),
                           controller: _textEditingController,
-                          onChanged: (texts) {
-                            setState(() {});
-                          },
                           maxLines: null,
                           decoration: const InputDecoration(
                               suffix: SizedBox(
@@ -101,17 +138,16 @@ class _PostScreenState extends State<PostScreen> {
                     isSelected: isSelected,
                     selectedColor: Theme.of(context).primaryColor,
                     onPressed: (index) => moodToggle(index),
-                    children: const [
-                      Icon(Icons.sentiment_satisfied_outlined),
-                      Icon(Icons.emoji_emotions_outlined),
-                      Icon(Icons.sentiment_very_satisfied_outlined),
-                      Icon(Icons.sentiment_neutral_outlined),
-                      Icon(Icons.sentiment_dissatisfied_outlined),
-                      Icon(Icons.sentiment_very_dissatisfied_outlined),
-                      Icon(Icons.sick_outlined),
-                      Icon(Icons.favorite_border_outlined),
-                    ],
+                    children: [for (var i in icons) Icon(i)],
                   ),
+                  Gaps.v32,
+                  GestureDetector(
+                    onTap: _uploadPost,
+                    child: FormButton(
+                      disabled: _mood <= 0,
+                      text: "Post",
+                    ),
+                  )
                 ],
               ),
             ),

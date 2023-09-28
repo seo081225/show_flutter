@@ -33,7 +33,7 @@ class PostViewModel extends AsyncNotifier<void> {
           );
         },
       );
-      context.go("/home");
+      context.push("/home");
     }
   }
 }

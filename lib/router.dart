@@ -32,8 +32,8 @@ final routerProvider = Provider((ref) {
         builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
-        path: Routes.MAIN_TAB_PATH,
         name: Routes.MAIN_TAB_NAME,
+        path: Routes.MAIN_TAB_PATH,
         builder: (context, state) {
           final tab = state.params["tab"]!;
           return MainNavigationScreen(tab: tab);

@@ -1,4 +1,5 @@
 class PostModel {
+  final String? uid;
   final int mood;
   final String content;
   final String creatorUid;
@@ -6,6 +7,7 @@ class PostModel {
   final int createdAt;
 
   PostModel({
+    this.uid,
     required this.mood,
     required this.content,
     required this.creatorUid,
@@ -14,15 +16,18 @@ class PostModel {
   });
 
   PostModel.formJson({
+    String? uid,
     required Map<String, dynamic> json,
-  })  : mood = json["mood"],
+  })  : uid = uid,
+        mood = json["mood"],
         content = json["content"],
         creatorUid = json["creatorUid"],
         createdAt = json["createdAt"],
         creator = json["creator"];
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson(uid) {
     return {
+      "uid": uid,
       "mood": mood,
       "content": content,
       "creatorUid": creatorUid,

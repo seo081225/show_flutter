@@ -6,7 +6,8 @@ class PostRepository {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future<void> uploadPost(PostModel data) async {
-    _db.collection("posts").add(data.toJson());
+    final postsDoc = _db.collection("posts").doc();
+    postsDoc.set(data.toJson(postsDoc.id));
   }
 
   Future<QuerySnapshot<Map<String, dynamic>>> fetchPosts({

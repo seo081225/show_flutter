@@ -24,6 +24,7 @@ class PostViewModel extends AsyncNotifier<void> {
         () async {
           await _repository.uploadPost(
             PostModel(
+              uid: null,
               mood: form["mood"],
               content: form["content"],
               creatorUid: user.uid,

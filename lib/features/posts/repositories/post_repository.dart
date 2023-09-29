@@ -12,10 +12,9 @@ class PostRepository {
   Future<QuerySnapshot<Map<String, dynamic>>> fetchPosts({
     int? lastItemCreatedAt,
   }) {
-    final query = _db
-        .collection("posts")
-        .orderBy("createdAt", descending: true)
-        .limit(10);
+    final query =
+        _db.collection("posts").orderBy("createdAt", descending: true);
+
     if (lastItemCreatedAt == null) {
       return query.get();
     } else {

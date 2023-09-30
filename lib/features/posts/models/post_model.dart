@@ -18,7 +18,7 @@ class PostModel {
   PostModel.formJson({
     String? uid,
     required Map<String, dynamic> json,
-  })  : uid = uid,
+  })  : uid = json["uid"],
         mood = json["mood"],
         content = json["content"],
         creatorUid = json["creatorUid"],

@@ -10,7 +10,6 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    print(Localizations.localeOf(context));
     return Localizations.override(
       context: context,
       child: Scaffold(
@@ -19,7 +18,8 @@ class SettingsScreen extends ConsumerWidget {
         ),
         body: ListView(
           children: [
-            SwitchListTile.adaptive(
+            SwitchListTile(
+              activeColor: Theme.of(context).colorScheme.primary,
               value: ref.watch(settingProvider).darkMode,
               onChanged: (value) =>
                   ref.read(settingProvider.notifier).setDarkMode(value),

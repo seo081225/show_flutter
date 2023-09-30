@@ -22,6 +22,10 @@ class PostRepository {
       return query.startAfter([lastItemCreatedAt]).get();
     }
   }
+
+  Future<void> deletePost(String uid) async {
+    await _db.collection("posts").doc(uid).delete();
+  }
 }
 
 final postRepository = Provider((ref) => PostRepository());

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:show_flutter/constants/sizes.dart';
-import 'package:show_flutter/features/home/views/home_screen.dart';
+import 'package:show_flutter/features/posts/views/post_view_screen.dart';
 import 'package:show_flutter/features/main_navigation/widgets/navigation_tab.dart';
 import 'package:show_flutter/features/posts/views/post_screen.dart';
 
@@ -40,7 +40,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
         children: [
           Offstage(
             offstage: _selectedIndex != 0,
-            child: const HomeScreen(),
+            child: const PostViewScreen(),
           ),
           Offstage(
             offstage: _selectedIndex != 1,
@@ -51,9 +51,6 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       bottomNavigationBar: Container(
         padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).padding.bottom + Sizes.size10),
-        decoration: BoxDecoration(
-            border:
-                Border.all(width: 2, color: Theme.of(context).primaryColor)),
         child: Padding(
           padding: const EdgeInsets.all(Sizes.size10),
           child: Row(

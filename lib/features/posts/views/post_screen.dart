@@ -29,7 +29,7 @@ class _PostScreenState extends ConsumerState<PostScreen> {
   ];
 
   String _context = "";
-  int _mood = 0;
+  int _mood = -1;
 
   @override
   void dispose() {
@@ -60,7 +60,7 @@ class _PostScreenState extends ConsumerState<PostScreen> {
   }
 
   void _uploadPost() {
-    if (_mood < 0) return;
+    if (_mood <= 0) return;
     ref.read(postForm.notifier).state = {
       "content": _context,
       "mood": _mood,
@@ -73,7 +73,7 @@ class _PostScreenState extends ConsumerState<PostScreen> {
       setState(() {
         _textEditingController.text = "";
         _context = "";
-        _mood = 0;
+        _mood = -1;
         isSelected = <bool>[
           false,
           false,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:show_flutter/constants/gaps.dart';
-import 'package:show_flutter/constants/rotes.dart';
+import 'package:show_flutter/constants/routes.dart';
 import 'package:show_flutter/constants/sizes.dart';
 import 'package:show_flutter/features/authentication/view_models/signup_view_model.dart';
 import 'package:show_flutter/features/authentication/views/widgets/form_button.dart';
@@ -82,10 +82,11 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Gaps.v80,
-                  const Text(
-                    "Join!",
+                  Text(
+                    "Join",
                     style: TextStyle(
                       fontSize: Sizes.size36,
+                      color: Theme.of(context).primaryColor,
                     ),
                   ),
                   Gaps.v40,
@@ -93,18 +94,8 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     autocorrect: false,
-                    decoration: InputDecoration(
-                      hintText: 'Email',
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade400,
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade400,
-                        ),
-                      ),
+                    decoration: const InputDecoration(
+                      labelText: 'Email',
                     ),
                     validator: (value) {
                       if (value != null && value.isEmpty) {
@@ -124,18 +115,8 @@ class SignUpScreenState extends ConsumerState<SignUpScreen> {
                     onEditingComplete: _onSubmitTap,
                     obscureText: true,
                     autocorrect: false,
-                    decoration: InputDecoration(
-                      hintText: 'Password',
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade400,
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.grey.shade400,
-                        ),
-                      ),
+                    decoration: const InputDecoration(
+                      labelText: 'Password',
                     ),
                     validator: (value) {
                       if (value != null && value.isEmpty) {

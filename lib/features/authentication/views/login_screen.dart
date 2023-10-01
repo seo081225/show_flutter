@@ -38,90 +38,70 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('MOOD'),
-        leading: const Text(""),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: Sizes.size36,
-        ),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              Gaps.v80,
-              const Text(
-                "Welcome!",
-                style: TextStyle(
-                  fontSize: Sizes.size24,
-                ),
-              ),
-              Gaps.v28,
-              TextFormField(
-                autocorrect: false,
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade400,
-                    ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade400,
-                    ),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: Sizes.size40,
+          ),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Gaps.v80,
+                Text(
+                  "Welcome",
+                  style: TextStyle(
+                    color: Theme.of(context).primaryColor,
+                    fontSize: Sizes.size36,
                   ),
                 ),
-                validator: (value) {
-                  if (value != null && value.isEmpty) {
-                    return "Plase write your email";
-                  }
-                  return null;
-                },
-                onSaved: (newValue) {
-                  if (newValue != null) {
-                    formData['email'] = newValue;
-                  }
-                },
-              ),
-              Gaps.v16,
-              TextFormField(
-                obscureText: true,
-                autocorrect: false,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade400,
-                    ),
+                Gaps.v40,
+                TextFormField(
+                  obscureText: false,
+                  autocorrect: false,
+                  decoration: const InputDecoration(
+                    labelText: 'Email',
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.grey.shade400,
-                    ),
-                  ),
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return "Plase write your email";
+                    }
+                    return null;
+                  },
+                  onSaved: (newValue) {
+                    if (newValue != null) {
+                      formData['email'] = newValue;
+                    }
+                  },
                 ),
-                validator: (value) {
-                  if (value != null && value.isEmpty) {
-                    return "Plase write your password";
-                  }
-                  return null;
-                },
-                onSaved: (newValue) {
-                  if (newValue != null) {
-                    formData['password'] = newValue;
-                  }
-                },
-              ),
-              Gaps.v28,
-              GestureDetector(
-                onTap: _onSubmitTap,
-                child: const FormButton(
-                    disabled: false, //ref.watch(loginProvider).isLoading,
-                    text: "Enter"),
-              )
-            ],
+                Gaps.v16,
+                TextFormField(
+                  obscureText: true,
+                  autocorrect: false,
+                  decoration: const InputDecoration(
+                    labelText: 'Password',
+                  ),
+                  validator: (value) {
+                    if (value != null && value.isEmpty) {
+                      return "Plase write your password";
+                    }
+                    return null;
+                  },
+                  onSaved: (newValue) {
+                    if (newValue != null) {
+                      formData['password'] = newValue;
+                    }
+                  },
+                ),
+                Gaps.v28,
+                GestureDetector(
+                  onTap: _onSubmitTap,
+                  child: const FormButton(
+                      disabled: false, //ref.watch(loginProvider).isLoading,
+                      text: "Enter"),
+                )
+              ],
+            ),
           ),
         ),
       ),

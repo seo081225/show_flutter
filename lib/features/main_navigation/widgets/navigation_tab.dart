@@ -24,19 +24,17 @@ class NavigationTab extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: () => onTap(),
-        child: AnimatedOpacity(
-          duration: const Duration(milliseconds: 100),
-          opacity: isSelected ? 1 : 0.6,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                isSelected ? selectedIcon : icon,
-                color: Theme.of(context).primaryColor,
-                size: Sizes.size36,
-              ),
-            ],
-          ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              isSelected ? selectedIcon : icon,
+              color: isSelected
+                  ? Theme.of(context).primaryColor
+                  : Theme.of(context).disabledColor,
+              size: Sizes.size36,
+            ),
+          ],
         ),
       ),
     );

@@ -14,7 +14,15 @@ class SettingsScreen extends ConsumerWidget {
       context: context,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Settings'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            color: Theme.of(context).primaryColor,
+            onPressed: () => context.pop(),
+          ),
+          title: Text(
+            "Settings",
+            style: TextStyle(color: Theme.of(context).primaryColor),
+          ),
         ),
         body: ListView(
           children: [

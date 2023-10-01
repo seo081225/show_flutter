@@ -28,9 +28,8 @@ class FormButton extends StatelessWidget {
         duration: const Duration(milliseconds: 500),
         child: AnimatedDefaultTextStyle(
           duration: const Duration(milliseconds: 500),
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.w600,
-            color: Theme.of(context).colorScheme.onPrimary,
           ),
           child: Text(
             text ?? "Next",

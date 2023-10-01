@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:show_flutter/constants/gaps.dart';
-import 'package:show_flutter/constants/rotes.dart';
+import 'package:show_flutter/constants/routes.dart';
+import 'package:show_flutter/constants/sizes.dart';
 import 'package:show_flutter/features/posts/view_models/post_view_model.dart';
 
 class PostViewScreen extends ConsumerStatefulWidget {
@@ -60,11 +61,17 @@ class _PostScreenState extends ConsumerState<PostViewScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text("MOODS"),
+        title: Text(
+          "Mood Tracker",
+          style: TextStyle(color: Theme.of(context).primaryColor),
+        ),
         actions: [
           IconButton(
             onPressed: () => context.pushNamed(Routes.SETTING_NAME),
-            icon: const Icon(Icons.settings_sharp),
+            icon: Icon(
+              Icons.settings_sharp,
+              color: Theme.of(context).primaryColor,
+            ),
           )
         ],
       ),
@@ -84,7 +91,7 @@ class _PostScreenState extends ConsumerState<PostViewScreen> {
                   final post = posts[index];
                   return Padding(
                     padding:
-                        const EdgeInsets.only(left: 20, right: 20, top: 15),
+                        const EdgeInsets.only(left: 15, right: 15, top: 15),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -92,27 +99,44 @@ class _PostScreenState extends ConsumerState<PostViewScreen> {
                           onLongPress: () => _onLongPressItem(post.uid),
                           child: Card(
                             elevation: 1,
-                            shape: const RoundedRectangleBorder(
+                            shape: RoundedRectangleBorder(
                               side: BorderSide(
+                                color: Theme.of(context).primaryColor,
                                 width: 2,
                               ),
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(12)),
+                                  const BorderRadius.all(Radius.circular(12)),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 15, vertical: 10),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      const Text("Mood : "),
-                                      Icon(IconData(post.mood,
-                                          fontFamily: 'MaterialIcons'))
+                                      Text(
+                                        "Mood : ",
+                                        style: TextStyle(
+                                            fontSize: Sizes.size16,
+                                            color:
+                                                Theme.of(context).primaryColor),
+                                      ),
+                                      Icon(
+                                        IconData(post.mood,
+                                            fontFamily: 'MaterialIcons'),
+                                        color: Theme.of(context).primaryColor,
+                                      )
                                     ],
                                   ),
-                                  Text(post.content),
+                                  Gaps.v4,
+                                  Text(
+                                    post.content,
+                                    style: const TextStyle(
+                                      fontSize: Sizes.size16,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
@@ -153,6 +177,6 @@ Text timeAgo(int savedTimeInMilliseconds) {
 
   return Text(
     timeAgo,
-    style: const TextStyle(fontSize: 12),
+    style: const TextStyle(fontSize: Sizes.size12),
   );
 }

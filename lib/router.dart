@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:show_flutter/constants/rotes.dart';
+import 'package:show_flutter/constants/routes.dart';
 import 'package:show_flutter/features/authentication/repository/authentication_repository.dart';
 import 'package:show_flutter/features/authentication/views/login_screen.dart';
 import 'package:show_flutter/features/authentication/views/sign_up_screen.dart';

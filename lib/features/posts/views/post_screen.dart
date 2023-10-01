@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:show_flutter/constants/gaps.dart';
 import 'package:show_flutter/constants/icons.dart';
 import 'package:show_flutter/constants/sizes.dart';
@@ -88,11 +89,18 @@ class _PostScreenState extends ConsumerState<PostScreen> {
     }
   }
 
+  String _getToday() {
+    return DateFormat('y/MM/dd, EEE').format(DateTime.now());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("MOOD"),
+        title: Text(
+          _getToday(),
+          style: TextStyle(color: Theme.of(context).primaryColor),
+        ),
       ),
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
@@ -100,45 +108,61 @@ class _PostScreenState extends ConsumerState<PostScreen> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Gaps.v20,
+                  Text(
+                    "What's your mood?",
+                    style: TextStyle(
+                      fontSize: Sizes.size20,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                  Gaps.v10,
+                  ToggleButtons(
+                    color: Theme.of(context).primaryColor,
+                    borderColor: Theme.of(context).primaryColor,
+                    selectedBorderColor: Theme.of(context).primaryColor,
+                    isSelected: isSelected,
+                    onPressed: (index) => moodToggle(index),
+                    children: [for (var i in icons) Icon(i)],
+                  ),
                   Gaps.v32,
-                  const Text("How do you feel?",
-                      style: TextStyle(fontSize: Sizes.size20)),
+                  Text(
+                    "How do you feel?",
+                    style: TextStyle(
+                      fontSize: Sizes.size20,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
                   Gaps.v10,
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       children: [
-                        TextField(
+                        TextFormField(
                           maxLength: 300,
-                          style: const TextStyle(),
                           controller: _textEditingController,
                           maxLines: null,
-                          decoration: const InputDecoration(
-                              suffix: SizedBox(
+                          autocorrect: false,
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Theme.of(context)
+                                  .primaryColor
+                                  .withOpacity(0.2),
+                              suffix: const SizedBox(
                                 height: 120,
                                 child: Text(''),
                               ),
                               border: InputBorder.none,
                               hintText: "Write it down here!",
-                              hintStyle:
-                                  TextStyle(overflow: TextOverflow.ellipsis)),
+                              hintStyle: const TextStyle(
+                                  overflow: TextOverflow.ellipsis)),
                         ),
                       ],
                     ),
-                  ),
-                  Gaps.v32,
-                  const Text("What's your mood?",
-                      style: TextStyle(fontSize: Sizes.size20)),
-                  Gaps.v10,
-                  ToggleButtons(
-                    isSelected: isSelected,
-                    selectedColor: Theme.of(context).primaryColor,
-                    onPressed: (index) => moodToggle(index),
-                    children: [for (var i in icons) Icon(i)],
                   ),
                   Gaps.v32,
                   GestureDetector(

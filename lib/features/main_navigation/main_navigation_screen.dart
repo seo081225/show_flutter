@@ -4,6 +4,7 @@ import 'package:show_flutter/constants/sizes.dart';
 import 'package:show_flutter/features/posts/views/post_view_screen.dart';
 import 'package:show_flutter/features/main_navigation/widgets/navigation_tab.dart';
 import 'package:show_flutter/features/posts/views/post_screen.dart';
+import 'package:show_flutter/features/users/views/user_profile_screen.dart';
 
 class MainNavigationScreen extends StatefulWidget {
   final String tab;
@@ -21,6 +22,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   final List<String> _tabs = [
     "home",
     "post",
+    "profile",
   ];
 
   late int _selectedIndex = _tabs.indexOf(widget.tab);
@@ -46,6 +48,13 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
             offstage: _selectedIndex != 1,
             child: const PostScreen(),
           ),
+          Offstage(
+            offstage: _selectedIndex != 2,
+            child: const UserProfileScreen(
+              username: "시오",
+              tab: "",
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: Container(
@@ -70,6 +79,14 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
                 icon: Icons.create_outlined,
                 selectedIcon: Icons.create_sharp,
                 onTap: () => _onTap(1),
+                selectedIndex: _selectedIndex,
+              ),
+              NavigationTab(
+                text: "Profile",
+                isSelected: _selectedIndex == 2,
+                icon: Icons.person_outline,
+                selectedIcon: Icons.person,
+                onTap: () => _onTap(2),
                 selectedIndex: _selectedIndex,
               ),
             ],

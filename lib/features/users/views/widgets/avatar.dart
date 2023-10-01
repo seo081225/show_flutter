@@ -47,6 +47,7 @@ class Avatar extends ConsumerWidget {
             )
           : CircleAvatar(
               radius: 50,
+              backgroundColor: Theme.of(context).primaryColor,
               foregroundImage: hasAvatar
                   ? NetworkImage(
                       "https://firebasestorage.googleapis.com/v0/b/show-ad4de.appspot.com/o/avatars%2F$uid?alt=media&haha=${DateTime.now().toString()}")

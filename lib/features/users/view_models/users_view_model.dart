@@ -31,8 +31,6 @@ class UsersViewModel extends AsyncNotifier<UserProfileModel> {
     }
     state = const AsyncValue.loading();
     final profile = UserProfileModel(
-      bio: "undefined",
-      link: "undefined",
       hasAvatar: false,
       email: credential.user!.email ?? "anon@anon.com",
       uid: credential.user!.uid,

@@ -61,9 +61,12 @@ final postProvider = AsyncNotifierProvider<PostViewModel, void>(
 
 final postViewProvider = StreamProvider.autoDispose<List<PostModel>>((ref) {
   final firestore = FirebaseFirestore.instance;
+  final user = ref.read(authRepository).user;
+  print(user!.uid);
 
   return firestore
       .collection("posts")
+      .where("creatorUid", isEqualTo: user.uid)
       .orderBy("createdAt", descending: true)
       .snapshots()
       .map(
